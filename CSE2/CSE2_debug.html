@@ -70,7 +70,7 @@
 		  var input = document.getElementById('profile');
 		  var file = input.files[0];
 		  var reader = new FileReader;
-		  var base64 = btoa(uint8ToString(reader.readAsArrayBuffer(file)));
+		  var base64 = btoa(uint8ToString(file.ArrayBuffer());
 		  Module['FS_createDataFile'](".", file.name, atob(base64), true, true);
 		  Module.ccall('_LoadProfile', 'boolean', 'const char', file.name);
 		}
