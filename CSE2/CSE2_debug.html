@@ -56,6 +56,22 @@
   }
 }
     </style>
+	<script>
+		function uint8ToString(buf) {
+			var i, length, out = '';
+			for (i = 0, length = buf.length; i < length; i += 1) {
+				out += String.fromCharCode(buf[i]);
+			}
+			return out;
+		}
+
+		function loadFile(input) {
+		  var file = input.attr("files")[0];
+		  var base64 = btoa(uint8ToString(file.readAsArrayBuffer()));
+		  Module['FS_createDataFile'](".", file.name, atob(base64), true, true);
+		  Module._LoadProfile(file.name);
+		}
+	</script>
   </head>
   <body>
    <!--
@@ -90,7 +106,8 @@
 			This is a compilation of the emscripten branch of CSE2 by me, Marilyn.<br>
 			I don't take any credit for anything here since I didn't make it :P
 		</p>
-    </div>
+		<input type="file" id="profile" style="color: white;" onchange="loadFile(this)"/>
+	</div>
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');
