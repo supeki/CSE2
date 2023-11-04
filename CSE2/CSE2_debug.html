@@ -67,7 +67,8 @@
 			  out += String.fromCharCode(file[i]);
 		  }
 		  var base64 = btoa(out);
-		  Module.FS_createDataFile("/", file.name, atob(base64), true, true, true);
+		  var nfile = FS.open("/" .. file.name, "w+");
+		  FS.write(nfile, base64, 0, base64.length);
 		  Module.ccall('_LoadProfile', 'boolean', 'const char', file.name);
 		}
 	</script>
