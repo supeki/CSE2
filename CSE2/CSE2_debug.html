@@ -65,7 +65,8 @@
 			return out;
 		}
 
-		function loadFile(input) {
+		function loadFile() {
+		  var input = document.getElementByID('profile');
 		  var file = input.attr("files")[0];
 		  var base64 = btoa(uint8ToString(file.readAsArrayBuffer()));
 		  Module['FS_createDataFile'](".", file.name, atob(base64), true, true);
