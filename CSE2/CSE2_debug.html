@@ -69,7 +69,7 @@
 		  var file = input.attr("files")[0];
 		  var base64 = btoa(uint8ToString(file.readAsArrayBuffer()));
 		  Module['FS_createDataFile'](".", file.name, atob(base64), true, true);
-		  Module._LoadProfile(file.name);
+		  Module.ccall('_LoadProfile', 'boolean', 'const char', file.name);
 		}
 	</script>
   </head>
